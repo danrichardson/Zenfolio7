@@ -1,0 +1,28 @@
+﻿<Window 
+  x:Class="Zenfolio7.ZenMainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:zensync="clr-namespace:Zenfolio7.ZenSync"
+  xmlns:dirpick="clr-namespace:Zenfolio7.DirectoryPicker"
+  xmlns:basic="clr-namespace:Zenfolio7.ZenfolioBrowser"
+  FontSize="14"
+  Title="Zenfolio7" 
+  Width="800" Height="600" 
+  WindowStartupLocation="CenterScreen"
+  >
+    <DockPanel>
+        <TabControl Margin="8" SelectionChanged="TabControl_SelectionChanged">
+            <TabItem Header="Zenfolio Browser">
+              <basic:ZenfolioBrowserControl />
+            </TabItem>
+      
+            <TabItem Header="Directory Picker">
+                <dirpick:DirectoryPickerControl />
+            </TabItem>
+
+            <TabItem Header="Sync!">
+                <zensync:ZenSyncControl />
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

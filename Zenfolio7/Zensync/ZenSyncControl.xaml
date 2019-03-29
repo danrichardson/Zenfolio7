@@ -1,0 +1,30 @@
+﻿<UserControl 
+  x:Class="Zenfolio7.ZenSync.ZenSyncControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="clr-namespace:Zenfolio7.LoadOnDemand"
+  >
+  <DockPanel>
+    <TextBlock DockPanel.Dock="Bottom" TextWrapping="Wrap" FontSize="12">
+      When a top-level item (a Region) is expanded for the first time, its list of States 
+      is dynamically loaded.  When a State is expanded for the first time, its Cities are
+      loaded.  This deferred loading takes place in the ViewModel classes, and the
+      TreeView displays the new objects due to data binding.
+    </TextBlock>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Root Directory:" />
+                <TextBlock 
+                    x:Name="rootDirectoryTextBox"
+                    Margin="6,0"
+                    Text="{Binding SelectedDirectory}"
+                    Width="500"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" DataContext="{Binding SelectedGroupElement}">
+                <TextBlock Text="Zenfolio Group:" />
+                <TextBlock Text="{Binding Title}" ToolTip="{Binding Id}"/>
+            </StackPanel>
+        </StackPanel>
+
+  </DockPanel>
+</UserControl>
