@@ -79,7 +79,7 @@
         <!-- The Stuff -->
         <DockPanel Name="MainDockPanel">
             <StackPanel Orientation="Vertical" DockPanel.Dock="Right" >
-                <Popup Name="MyPopup" Placement="Center" PlacementTarget="{Binding ElementName=MainDockPanel}" Height="420" Width="420">
+                <Popup Name="PhotoPopup" Placement="Center" PlacementTarget="{Binding ElementName=MainDockPanel}" Height="420" Width="420">
                     <i:Interaction.Behaviors>
                         <utilities:MouseDragPopupBehavior/>
                     </i:Interaction.Behaviors>
@@ -149,7 +149,7 @@
                         <TextBlock Text="{Binding Name}">
                             <TextBlock.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Menu item 1" />
+                                    <MenuItem Header="Show Contact Sheet" Click="ShowContactSheet"/>
                                     <MenuItem Header="Menu item 2" />
                                     <Separator />
                                     <MenuItem Header="Menu item 3" />

@@ -179,6 +179,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ZenfolioBrowser\ContactSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Zensync\ZenSyncControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -209,6 +213,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="ZenfolioBrowser\ContactSheet.xaml.cs">
+      <DependentUpon>ContactSheet.xaml</DependentUpon>
     </Compile>
     <Compile Include="Zensync\ZenSyncControl.xaml.cs">
       <DependentUpon>ZenSyncControl.xaml</DependentUpon>
