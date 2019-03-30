@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zenfolio7.ZenfolioBrowser"
         mc:Ignorable="d"
-        Title="ContactSheet" Height="450" Width="800"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        Title="ContactSheet" Height="450" Width="800">
     <Window.Resources>
 
         <!--<Style TargetType="{x:Type Thumb}" 
@@ -57,11 +56,11 @@
     <ScrollViewer>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <Button Content="Shrink It" Click="ShrinkIt"/>
-                <Button Content="Embiggen" Click="Embiggen"/>
-                <Button Content="Small" Click="SmallThumbnail"/>
-                <Button Content="Medium" Click="MediumThumbnail"/>
-                <Button Content="Large" Click="LargeThumbnail"/>
+                <Button Content="Shrink It" Command="{Binding ShrinkItCommand}"/>
+                <Button Content="Embiggen" Command="{Binding EmbiggenCommand}"/>
+                <Button Content="Small" Command="{Binding SmallThumbnailCommand}"/>
+                <Button Content="Medium" Command="{Binding MediumThumbnailCommand}"/>
+                <Button Content="Large" Command="{Binding LargeThumbnailCommand}"/>
             </StackPanel>
             <ItemsControl ItemsSource="{Binding Path=PhotoCollection}" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" Margin="20">
                 <ItemsControl.ItemTemplate>

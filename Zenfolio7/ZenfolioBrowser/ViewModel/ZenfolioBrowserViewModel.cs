@@ -72,7 +72,6 @@ namespace Zenfolio7.ZenfolioBrowser
             Properties.Settings.Default.Save();
 
             var CredentialsValid = Database.Login(Username, Password);
-            //PropertyChanged(this, new PropertyChangedEventArgs("CredentialsValid"));
             if (!CredentialsValid)
             {
                 ZenfolioResponse = Database.ZenfolioResponse; 

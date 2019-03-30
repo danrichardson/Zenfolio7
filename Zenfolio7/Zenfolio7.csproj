@@ -134,6 +134,10 @@
     </Compile>
     <Compile Include="DirectoryPicker\ViewModel\DirectoryPickerViewModel.cs" />
     <Compile Include="Messages\DataUpdateMessage.cs" />
+    <Compile Include="Utilities\AwesomeWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utilities\ExtensionMethods.cs" />
     <Compile Include="Utilities\GetIconUseDll.cs" />
     <Compile Include="Utilities\GetImageFn.cs" />
     <Compile Include="Utilities\InverseBooleanConverter.cs" />
@@ -189,6 +193,8 @@
     <Compile Include="ZenfolioBrowser\ContactSheet.xaml.cs">
       <DependentUpon>ContactSheet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZenfolioBrowser\ViewModel\ContactSheetViewModel.cs" />
+    <Compile Include="ZenfolioBrowser\ViewModel\DisplayPhoto.cs" />
     <Compile Include="Zensync\ZenSyncControl.xaml.cs">
       <DependentUpon>ZenSyncControl.xaml</DependentUpon>
     </Compile>

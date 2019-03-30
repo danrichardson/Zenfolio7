@@ -13,8 +13,6 @@ namespace Zenfolio7.ZenfolioBrowser
     public partial class ZenfolioBrowserControl : UserControl
     {
         readonly ZenfolioBrowserViewModel _viewModel;
-        //private DispatcherTimer timer;
-        //private Uri imageUri;
 
         public ZenfolioBrowserControl()
         {
