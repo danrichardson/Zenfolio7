@@ -12,5 +12,6 @@ namespace Zenfolio7
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

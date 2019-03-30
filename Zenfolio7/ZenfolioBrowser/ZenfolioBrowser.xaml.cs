@@ -5,7 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
+using System.Windows.Controls.Primitives;
+using Zenfolio7.DataAccess;
 
 namespace Zenfolio7.ZenfolioBrowser
 {
@@ -45,7 +46,7 @@ namespace Zenfolio7.ZenfolioBrowser
         {
             if ((sender as MenuItem).DataContext as Photo != null)
             {
-                MyPopup.IsOpen = false;
+                PhotoPopup.IsOpen = false;
                 var photo = (sender as MenuItem).DataContext as Photo;
                 var url = photo.OriginalUrl;
                 var uri = new Uri(url);
@@ -53,13 +54,13 @@ namespace Zenfolio7.ZenfolioBrowser
                 ((BitmapSource)(Thumbnail.Source)).DownloadCompleted += ImageLoaded;
                 Thumbnail.Visibility = Visibility.Hidden;
                 LoadingImageStatusBar.Visibility = Visibility.Visible;
-                MyPopup.IsOpen = true;
+                PhotoPopup.IsOpen = true;
             }
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            MyPopup.IsOpen = false;
+            PhotoPopup.IsOpen = false;
         }
 
         private void SelectedPhotos_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -67,7 +68,7 @@ namespace Zenfolio7.ZenfolioBrowser
             //See this: https://www.zenfolio.com/zf/help/api/guide/download
             if (sender as ListView != null && (sender as ListView).SelectedItem != null)
             {
-                MyPopup.IsOpen = false;
+                PhotoPopup.IsOpen = false;
                 var photo = (sender as ListView).SelectedItem as Photo;
                 int Size = 2; //400x400
                 var url = $"http://{photo.UrlHost}/{photo.UrlCore}-{Size}.jpg?sn={photo.Sequence}&tk={photo.UrlToken}";
@@ -76,7 +77,7 @@ namespace Zenfolio7.ZenfolioBrowser
                 ((BitmapSource)(Thumbnail.Source)).DownloadCompleted += ImageLoaded;
                 Thumbnail.Visibility = Visibility.Hidden;
                 LoadingImageStatusBar.Visibility = Visibility.Visible;
-                MyPopup.IsOpen = true;
+                PhotoPopup.IsOpen = true;
             }
         }
 
@@ -86,6 +87,33 @@ namespace Zenfolio7.ZenfolioBrowser
             {
                 var passwordBox = sender as PasswordBox;
                 _viewModel.Password = passwordBox.Password;
+            }
+        }
+
+        private void ShowContactSheet(object sender, RoutedEventArgs e)
+        {
+            if ((sender is MenuItem) && (sender as MenuItem).DataContext is ZenfolioTreeViewModel)
+            {
+                var groupElement = ((sender as MenuItem).DataContext as ZenfolioTreeViewModel).GroupElement;
+                if (groupElement is Group)
+                {
+                    //do something
+                    ((sender as MenuItem).DataContext as ZenfolioTreeViewModel).IsExpanded = true;
+                }
+                if (groupElement is PhotoSet)
+                {
+                    var parentWindow = this.Parent;
+                    
+
+                    var photoSet = groupElement as PhotoSet;
+                    if (photoSet.Photos == null || photoSet.Photos.Length == 0)
+                    {
+                        photoSet = Database.Client.LoadPhotoSet(photoSet.Id, InformationLevel.Level1, true);
+                    }
+
+                    var window = new ContactSheet(photoSet.Photos) { Owner = Application.Current.MainWindow};
+                    window.Show();
+                }
             }
         }
     }

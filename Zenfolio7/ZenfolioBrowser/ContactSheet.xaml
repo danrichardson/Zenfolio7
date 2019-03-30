@@ -1,0 +1,95 @@
+﻿<Window x:Class="Zenfolio7.ZenfolioBrowser.ContactSheet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zenfolio7.ZenfolioBrowser"
+        mc:Ignorable="d"
+        Title="ContactSheet" Height="450" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Window.Resources>
+
+        <!--<Style TargetType="{x:Type Thumb}" 
+           x:Key="PopupThumb">
+            <Setter Property="HorizontalAlignment" 
+              Value="Stretch"/>
+            <Setter Property="VerticalAlignment" 
+              Value="Stretch"/>
+            <EventSetter Event="DragStarted" 
+                   Handler="ThumbDragStarted" />
+            <EventSetter Event="DragDelta" 
+                   Handler="ThumbDragDelta" />
+            <EventSetter Event="DragCompleted" 
+                   Handler="ThumbDragCompleted" />
+        </Style>-->
+
+        <!--<Popup StaysOpen="False" Width="100" Height="100" 
+           x:Key="myPopup" Placement="Mouse">
+            <Border BorderBrush="Black" BorderThickness="1">
+                <Grid Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="10" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" 
+                     x:Name="PopupTxt"
+                     TextAlignment="Center" 
+                     VerticalAlignment="Center">
+            I'm A Popup!!
+                    </TextBlock>
+                    <Thumb Grid.Row="0" Grid.Column="1" 
+                 Cursor="SizeWE"
+                 Style="{StaticResource PopupThumb}"/>
+                    <Thumb Grid.Row="1" Grid.Column="0" 
+                 Cursor="SizeNS"
+               Style="{StaticResource PopupThumb}"/>
+                    <Thumb Grid.Row="1" Grid.Column="1" 
+                 Cursor="SizeNWSE"
+               Style="{StaticResource PopupThumb}"/>
+                </Grid>
+            </Border>
+        </Popup>-->
+    </Window.Resources>
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Shrink It" Click="ShrinkIt"/>
+                <Button Content="Embiggen" Click="Embiggen"/>
+                <Button Content="Small" Click="SmallThumbnail"/>
+                <Button Content="Medium" Click="MediumThumbnail"/>
+                <Button Content="Large" Click="LargeThumbnail"/>
+            </StackPanel>
+            <ItemsControl ItemsSource="{Binding Path=PhotoCollection}" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" Margin="20">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="2" Margin="2" BorderBrush="Black">
+                            <Image VirtualizingPanel.IsVirtualizing="True" Source="{Binding Image}" Height="{Binding ImageHeight}" Width="{Binding ImageWidth}"/>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </StackPanel>
+        <!--This works, but isn't ideal-->
+        <!--<Grid>
+        <Grid.Resources>
+            <DataTemplate x:Key="PhotoTemplate">
+                <Image Source="{Binding Path=PhotoURI}"/>
+            </DataTemplate>
+        </Grid.Resources>
+        <DataGrid ItemsSource="{Binding Path=DisplayPhotos}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn CellTemplate="{StaticResource PhotoTemplate}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>-->
+    </ScrollViewer>
+</Window>
