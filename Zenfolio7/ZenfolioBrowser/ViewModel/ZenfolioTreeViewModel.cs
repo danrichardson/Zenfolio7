@@ -1,7 +1,9 @@
-﻿using System;
+﻿using ImageMagick;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using Zenfolio7.Utilities;
 using Zenfolio7.View.ViewModel;
 using Zenfolio7.Zenfolio;
 
@@ -52,6 +54,16 @@ namespace Zenfolio7.ZenfolioBrowser
         public ZenfolioTreeViewModel(GroupElement groupElement)
             : this(groupElement, null)
         {
+
+            //just playing around here
+            var uri = new Uri("http://www.theimagedepot.com/img/s/v-3/p1850655431.jpg");
+            using (var client = new AwesomeWebClient())
+            {
+                client.Proxy = null;
+                var data = client.DownloadData(uri);
+                var magickImage = new MagickImage(data);
+                ExifProfile profile = magickImage.GetExifProfile();
+            }
         }
 
         public ZenfolioTreeViewModel(Photo photo)

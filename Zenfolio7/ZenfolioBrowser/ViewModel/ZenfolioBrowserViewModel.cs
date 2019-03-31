@@ -136,7 +136,7 @@ namespace Zenfolio7.ZenfolioBrowser
                     {
                         // clear dummy nodes
 
-                        photoSet = Database.Client.LoadPhotoSet(photoSet.Id, InformationLevel.Level1, true);
+                        photoSet = Database.Client.LoadPhotoSet(photoSet.Id, InformationLevel.Level2, true);
                         ((ZenfolioTreeViewModel)obj).GroupElement = photoSet;
                         ObservableCollection<ZenfolioTreeViewModel> children = new ObservableCollection<ZenfolioTreeViewModel>();
                         //TODO: This code works now that Fody is all scaffolded in and PropertyChanged BS is taken care of.  

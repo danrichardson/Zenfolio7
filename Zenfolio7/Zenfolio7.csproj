@@ -194,7 +194,7 @@
       <DependentUpon>ContactSheet.xaml</DependentUpon>
     </Compile>
     <Compile Include="ZenfolioBrowser\ViewModel\ContactSheetViewModel.cs" />
-    <Compile Include="ZenfolioBrowser\ViewModel\DisplayPhoto.cs" />
+    <Compile Include="DataModel\DisplayPhoto.cs" />
     <Compile Include="Zensync\ZenSyncControl.xaml.cs">
       <DependentUpon>ZenSyncControl.xaml</DependentUpon>
     </Compile>
@@ -343,6 +343,9 @@
       <Version>4.2.1</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Magick.NET-Q16-AnyCPU">
+      <Version>7.11.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft-WindowsAPICodePack-ShellExtensions">
       <Version>1.1.3.3</Version>

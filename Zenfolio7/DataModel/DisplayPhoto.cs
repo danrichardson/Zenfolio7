@@ -1,8 +1,7 @@
-﻿using System;
-using System.Windows.Media.Imaging;
+﻿using System.Windows.Media.Imaging;
 using Zenfolio7.Zenfolio;
 
-namespace Zenfolio7.ZenfolioBrowser.ViewModel
+namespace Zenfolio7.Model
 {
     public class DisplayPhoto
     {

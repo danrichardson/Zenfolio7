@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageMagick;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using Zenfolio7.Model;
 using Zenfolio7.Utilities;
 using Zenfolio7.View.ViewModel;
 using Zenfolio7.Zenfolio;
@@ -105,6 +107,8 @@ namespace Zenfolio7.ZenfolioBrowser.ViewModel
                         client.Proxy = null;
                         var data = client.DownloadData(url);
                         image = LoadImage(data);
+                        //var info = new MagickImageInfo(data);
+
                         //PhotoCollection.Add(new DisplayPhoto(photo, image, new Uri(url), DefaultImageHeight, DefaultImageWidth));
                         //Console.WriteLine($"Downloaded photo {currentImage++} of {numImages}");
                         success = true;
