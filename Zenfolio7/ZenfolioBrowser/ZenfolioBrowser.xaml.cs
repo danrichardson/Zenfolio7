@@ -106,7 +106,7 @@ namespace Zenfolio7.ZenfolioBrowser
                     var photoSet = groupElement as PhotoSet;
                     if (photoSet.Photos == null || photoSet.Photos.Length == 0)
                     {
-                        photoSet = Database.Client.LoadPhotoSet(photoSet.Id, InformationLevel.Level1, true);
+                        photoSet = Database.Client.LoadPhotoSet(photoSet.Id, InformationLevel.Full, true);
                     }
 
                     var window = new ContactSheet(photoSet.Photos) { Owner = Application.Current.MainWindow};

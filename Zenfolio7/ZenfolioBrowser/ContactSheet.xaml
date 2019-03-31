@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zenfolio7.ZenfolioBrowser"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:utilities="clr-namespace:Zenfolio7.Utilities"
         mc:Ignorable="d"
         Title="ContactSheet" Height="450" Width="800">
     <Window.Resources>
@@ -62,11 +64,31 @@
                 <Button Content="Medium" Command="{Binding MediumThumbnailCommand}"/>
                 <Button Content="Large" Command="{Binding LargeThumbnailCommand}"/>
             </StackPanel>
-            <ItemsControl ItemsSource="{Binding Path=PhotoCollection}" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" Margin="20">
+            <Popup Name="ContactSheetPopup" Placement="Center" PlacementTarget="{Binding ElementName=ContactSheetItemsControl}" Height="820" Width="650">
+                <i:Interaction.Behaviors>
+                    <utilities:MouseDragPopupBehavior/>
+                </i:Interaction.Behaviors>
+                <StackPanel Background="WhiteSmoke">
+                    <Button Click="Button_Click" Margin="10">
+                        <Grid>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible" Name="LoadingImageStatusBar" >
+                                <TextBlock Text="Loading..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <StatusBar HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <ProgressBar IsIndeterminate="True" Width="300" Height="15" />
+                                </StatusBar>
+                            </StackPanel>
+                            <Image Name="Thumbnail" ToolTip="ThingsAndStuff" Height="800" Width="630" Visibility="Hidden"></Image>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+            </Popup>
+            <ItemsControl Name="ContactSheetItemsControl" ItemsSource="{Binding Path=PhotoCollection}" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" Margin="20">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border BorderThickness="2" Margin="2" BorderBrush="Black">
-                            <Image VirtualizingPanel.IsVirtualizing="True" Source="{Binding Image}" Height="{Binding ImageHeight}" Width="{Binding ImageWidth}"/>
+                            <Button Click="ShowPopup">
+                                <Image VirtualizingPanel.IsVirtualizing="True" Source="{Binding Image}" Height="{Binding ImageHeight}" Width="{Binding ImageWidth}"/>
+                            </Button>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

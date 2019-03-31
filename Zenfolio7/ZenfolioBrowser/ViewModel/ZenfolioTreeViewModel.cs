@@ -56,14 +56,14 @@ namespace Zenfolio7.ZenfolioBrowser
         {
 
             //just playing around here
-            var uri = new Uri("http://www.theimagedepot.com/img/s/v-3/p1850655431.jpg");
-            using (var client = new AwesomeWebClient())
-            {
-                client.Proxy = null;
-                var data = client.DownloadData(uri);
-                var magickImage = new MagickImage(data);
-                ExifProfile profile = magickImage.GetExifProfile();
-            }
+            //var uri = new Uri("http://www.theimagedepot.com/img/s/v-3/p1850655431.jpg");
+            //using (var client = new AwesomeWebClient())
+            //{
+            //    client.Proxy = null;
+            //    var data = client.DownloadData(uri);
+            //    var magickImage = new MagickImage(data);
+            //    ExifProfile profile = magickImage.GetExifProfile();
+            //}
         }
 
         public ZenfolioTreeViewModel(Photo photo)
