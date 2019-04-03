@@ -34,6 +34,10 @@ namespace Zenfolio7.View.ViewModel
         {
             this.getCredentials = getCredentials;
         }
+
+        public RelayCommand()
+        {
+        }
         #endregion
 
         #region ICommand Members

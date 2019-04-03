@@ -1,10 +1,7 @@
-﻿using ImageMagick;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using Zenfolio7.Utilities;
-using Zenfolio7.View.ViewModel;
 using Zenfolio7.Zenfolio;
 
 namespace Zenfolio7.ZenfolioBrowser
@@ -21,7 +18,7 @@ namespace Zenfolio7.ZenfolioBrowser
         public ObservableCollection<ZenfolioTreeViewModel> Children { get; set; }
         public string Name { get { return (GroupElement != null) ? GroupElement.Title : Photo.FileName; } }
         public GroupElement GroupElement { get; set; }
-        public Photo Photo { get { return Photo; } set { Photo = value; } }
+        public Photo Photo { get; set; }
         public ZenfolioTreeViewModel Parent { get; }
  
         #region IsExpanded

@@ -5,16 +5,15 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   mc:Ignorable="d"
-  xmlns:mdl="clr-namespace:Zenfolio7.Model"
-  xmlns:vm="clr-namespace:Zenfolio7.DirectoryPicker.ViewModel"
-  xmlns:vw="clr-namespace:Zenfolio7.DirectoryPicker"
+  xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+  xmlns:utilities="clr-namespace:Zenfolio7.Utilities"
   d:DesignHeight="300"
   d:DesignWidth="300" 
   x:Name="CurrentTabbedNavTreesName">
 
     <UserControl.Resources>
 
-        <HierarchicalDataTemplate x:Key="NavTreeTempl" ItemsSource="{Binding Path=Children}" >
+        <HierarchicalDataTemplate x:Key="NavTreeTempl" ItemsSource="{Binding Path=Children}">
 
             <!-- Transparant button + command+parameter set SelectedPath EACH time item is clicked -->
 
@@ -35,9 +34,9 @@
                 <!-- Icon + Friendly Name horizontally stacked -->
                 <StackPanel Orientation="Horizontal" Margin="0" VerticalAlignment="Stretch" >
                     <Image
-              Source="{Binding Path=MyIcon, Mode=OneTime}"
-              Stretch="Fill"
-              />
+                      Source="{Binding Path=MyIcon, Mode=OneTime}"
+                      Stretch="Fill"
+                    />
                     <TextBlock Margin="5,0,0,0" Text="{Binding FriendlyName, Mode=OneTime}"/>
                 </StackPanel>
             </Button>
@@ -46,18 +45,47 @@
     </UserControl.Resources>
 
     <TreeView
-    BorderThickness="0"
-           
-    ItemsSource="{Binding Path=RootChildren}"
-    ItemTemplate="{StaticResource NavTreeTempl}" >
+        BorderThickness="0" 
+        ItemsSource="{Binding Path=RootChildren}"
+        SelectedItemChanged="TreeView_SelectedItemChanged"
+        >
+        <!--  Supplier teamplate  -->
+        <TreeView.ItemTemplate>
+            <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                <TextBlock Text="{Binding FriendlyName}" />
 
-        <TreeView.ItemContainerStyle>
+                <!--  Products template  -->
+                <HierarchicalDataTemplate.ItemTemplate>
+                    <DataTemplate>
+                        <Button Click="Button_Click"
+                        ToolTip="{Binding Path=FullPathName, Mode=OneTime}"     
+                        Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Height="20">
+                            <!-- Icon + Friendly Name horizontally stacked -->
+                            <StackPanel Orientation="Horizontal" Margin="0" VerticalAlignment="Stretch" >
+                                <Image
+                                  Source="{Binding Path=MyIcon, Mode=OneTime}"
+                                  Stretch="Fill"
+                                />
+                                <TextBlock Margin="5,0,0,0" Text="{Binding FriendlyName, Mode=OneTime}"/>
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </HierarchicalDataTemplate.ItemTemplate>
+
+            </HierarchicalDataTemplate>
+
+        </TreeView.ItemTemplate>
+        <!--<i:Interaction.Behaviors>
+            <utilities:BindableSelectedItemBehavior SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
+        </i:Interaction.Behaviors>-->
+        
+        <!--<TreeView.ItemContainerStyle>
             <Style TargetType="{x:Type TreeViewItem}">
                 <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
-                <!--<Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>-->
-                <!--<Setter Property="dd1:DragDropManager.DropTargetAdvisor" Value="{StaticResource FolderPlaneItemsDropAdvisor}"/>-->
+                <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+                --><!--<Setter Property="dd1:DragDropManager.DropTargetAdvisor" Value="{StaticResource FolderPlaneItemsDropAdvisor}"/>--><!--
             </Style>
-        </TreeView.ItemContainerStyle>
+        </TreeView.ItemContainerStyle>-->
     </TreeView>
 
 </UserControl>

@@ -102,7 +102,6 @@ namespace Zenfolio7.ZenfolioBrowser
                 {
                     var parentWindow = this.Parent;
                     
-
                     var photoSet = groupElement as PhotoSet;
                     if (photoSet.Photos == null || photoSet.Photos.Length == 0)
                     {

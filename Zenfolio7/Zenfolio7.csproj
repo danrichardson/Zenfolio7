@@ -137,6 +137,7 @@
     <Compile Include="Utilities\AwesomeWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Utilities\BindableSelectedItemBehavior.cs" />
     <Compile Include="Utilities\ExtensionMethods.cs" />
     <Compile Include="Utilities\GetIconUseDll.cs" />
     <Compile Include="Utilities\GetImageFn.cs" />

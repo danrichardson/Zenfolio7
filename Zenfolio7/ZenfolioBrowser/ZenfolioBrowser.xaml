@@ -8,9 +8,10 @@
     <!--FocusManager.FocusedElement="{Binding ElementName=searchTextBox}"-->
 
     <!--Browser Area-->
-    <DockPanel Visibility="Visible">
+    <DockPanel  >
         <!--Credentials Area-->
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Visibility="{Binding }">
+        <!--The hiding doesn't work, but that would also prevent the user from entering a different set of credentials.  Good enough for now.-->
+        <StackPanel Name="Credentials" Orientation="Horizontal" DockPanel.Dock="Top" Visibility="{Binding CredentialsValid, Converter={utilities:InverseBooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Username"/>
                 <TextBox MinWidth="100" Text="{Binding Username}"/>

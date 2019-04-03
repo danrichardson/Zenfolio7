@@ -62,6 +62,7 @@ namespace Zenfolio7.DataModel
         public ObservableCollection<INavTreeItem> Children { get { return GetMyChildren(); } }
 
         public bool IsExpanded { get; set; }
+        public bool IsSelected { get; set; }
 
         public bool IncludeFileChildren { get; set; }
 

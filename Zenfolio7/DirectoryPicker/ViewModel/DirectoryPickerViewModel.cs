@@ -4,6 +4,9 @@ using System.Collections.ObjectModel;
 using Zenfolio7.Utilities;
 using Zenfolio7.DataModel;
 using System.ComponentModel;
+using Zenfolio7.View.ViewModel;
+using Zenfolio7.Messages;
+using MVVMLight.Messaging;
 
 namespace Zenfolio7.DirectoryPicker.ViewModel
 {
@@ -11,11 +14,17 @@ namespace Zenfolio7.DirectoryPicker.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // public ICommand SelectedPathFromTreeCommand moved to ViewModel
+        public RelayCommand SelectedPathFromTreeCommand { get; set; }
 
         // a Name to bind to the NavTreeTabs
         public string TreeName { get; set; }
-
+        public string SelectedPath { get; set; }
+        public void OnSelectedPathChanged()
+        {
+            var dataUpdateMessage = new DataUpdateMessage("Test", DataUpdateMessage.DataPacketType.Group, SelectedPath);
+            Messenger.Default.Send(dataUpdateMessage);
+        }
+        public INavTreeItem SelectedItem { get; set; }
         // RootNr determines nr of RootItem that is used as RootNode 
         public int RootNr { get; set; }
 
@@ -47,6 +56,7 @@ namespace Zenfolio7.DirectoryPicker.ViewModel
         // Constructors
         public DirectoryPickerViewModel(int pRootNumber = 0, bool pIncludeFileChildren = false)
         {
+            SelectedPathFromTreeCommand = new RelayCommand(SelectedPathFromTree);
             RootChildren = new ObservableCollection<INavTreeItem> { };
 
             // create a new RootItem given rootNumber using convention
@@ -59,6 +69,11 @@ namespace Zenfolio7.DirectoryPicker.ViewModel
             RootChildren.Clear();
 
             foreach (INavTreeItem item in treeRootItem.Children) { RootChildren.Add(item); }
+        }
+
+        private void SelectedPathFromTree(object obj)
+        {
+            //
         }
 
         // Well I suppose with the implicit values these are just for the record/illustration  
