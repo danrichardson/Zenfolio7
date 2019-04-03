@@ -1,6 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.IO;
 using MVVMLight.Messaging;
 using Zenfolio7.Messages;
+using Zenfolio7.View.ViewModel;
 using Zenfolio7.Zenfolio;
 
 namespace Zenfolio7.ZenSync
@@ -11,9 +14,21 @@ namespace Zenfolio7.ZenSync
 
         public GroupElement SelectedGroupElement { get; set; }
         public string SelectedDirectory { get; set; }
+        public RelayCommand SyncCommand { get; set; }
         public ZenSyncViewModel() 
         {
             Messenger.Default.Register<DataUpdateMessage>(this, UpdateData);
+            SyncCommand = new RelayCommand(Sync, CanSync);
+        }
+
+        private bool CanSync(object obj)
+        {
+            return Directory.Exists(SelectedDirectory) && SelectedGroupElement != null;
+        }
+
+        private void Sync(object obj)
+        {
+            
         }
 
         private void UpdateData(DataUpdateMessage obj)

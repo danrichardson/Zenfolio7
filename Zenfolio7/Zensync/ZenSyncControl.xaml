@@ -11,20 +11,22 @@
       loaded.  This deferred loading takes place in the ViewModel classes, and the
       TreeView displays the new objects due to data binding.
     </TextBlock>
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Root Directory:" />
-                <TextBlock 
-                    x:Name="rootDirectoryTextBox"
-                    Margin="6,0"
-                    Text="{Binding SelectedDirectory}"
-                    Width="500"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" DataContext="{Binding SelectedGroupElement}">
-                <TextBlock Text="Zenfolio Group:" />
-                <TextBlock Text="{Binding Title}" ToolTip="{Binding Id}"/>
-            </StackPanel>
+    <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Root Directory:" />
+            <TextBlock 
+                x:Name="rootDirectoryTextBox"
+                Margin="6,0"
+                Text="{Binding SelectedDirectory}"
+                Width="500"/>
         </StackPanel>
-
+        <StackPanel Orientation="Horizontal" DataContext="{Binding SelectedGroupElement}">
+            <TextBlock Text="Zenfolio Group:" />
+            <TextBlock Text="{Binding Title}" ToolTip="{Binding Id}"/>
+        </StackPanel>
+    </StackPanel>
+        <StackPanel>
+            <Button Content="Sync!" Command="{Binding SyncCommand}"/>
+        </StackPanel>
   </DockPanel>
 </UserControl>
