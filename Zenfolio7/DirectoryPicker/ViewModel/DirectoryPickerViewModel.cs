@@ -33,6 +33,7 @@ namespace Zenfolio7.DirectoryPicker.ViewModel
 
         public void RebuildTree(int pRootNr = -1, bool pIncludeFileChildren = false)
         {
+            SelectedPathFromTreeCommand = new RelayCommand(SelectedPathFromTree);
             // First take snapshot of current expanded items
             List<String> SnapShot = NavTreeUtils.TakeSnapshot(RootChildren);
 
@@ -73,7 +74,10 @@ namespace Zenfolio7.DirectoryPicker.ViewModel
 
         private void SelectedPathFromTree(object obj)
         {
-            //
+            if (obj as String != null)
+            {
+                SelectedPath = obj as String;
+            }
         }
 
         // Well I suppose with the implicit values these are just for the record/illustration  

@@ -25,9 +25,8 @@
             <Button 
                 ToolTip="{Binding Path=FullPathName, Mode=OneTime}"     
                 Command="{Binding Path=DataContext.SelectedPathFromTreeCommand, 
-                           RelativeSource = {RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                           RelativeSource = {RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
                 CommandParameter="{Binding FullPathName}"
-        
                 Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Height="20"
                 Focusable="False" ClickMode="Press">
 
@@ -45,22 +44,37 @@
     </UserControl.Resources>
 
     <TreeView
+    BorderThickness="0"
+           
+    ItemsSource="{Binding Path=RootChildren}"
+    ItemTemplate="{StaticResource NavTreeTempl}" >
+
+        <TreeView.ItemContainerStyle>
+            <Style TargetType="{x:Type TreeViewItem}">
+                <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
+                <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+                <!--<Setter Property="dd1:DragDropManager.DropTargetAdvisor" Value="{StaticResource FolderPlaneItemsDropAdvisor}"/>-->
+            </Style>
+        </TreeView.ItemContainerStyle>
+    </TreeView>
+    
+    <!--<TreeView
         BorderThickness="0" 
         ItemsSource="{Binding Path=RootChildren}"
         SelectedItemChanged="TreeView_SelectedItemChanged"
         >
-        <!--  Supplier teamplate  -->
+        --><!--  Supplier teamplate  --><!--
         <TreeView.ItemTemplate>
             <HierarchicalDataTemplate ItemsSource="{Binding Children}">
                 <TextBlock Text="{Binding FriendlyName}" />
 
-                <!--  Products template  -->
+                --><!--  Products template  --><!--
                 <HierarchicalDataTemplate.ItemTemplate>
                     <DataTemplate>
                         <Button Click="Button_Click"
                         ToolTip="{Binding Path=FullPathName, Mode=OneTime}"     
                         Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Height="20">
-                            <!-- Icon + Friendly Name horizontally stacked -->
+                            --><!-- Icon + Friendly Name horizontally stacked --><!--
                             <StackPanel Orientation="Horizontal" Margin="0" VerticalAlignment="Stretch" >
                                 <Image
                                   Source="{Binding Path=MyIcon, Mode=OneTime}"
@@ -75,7 +89,7 @@
             </HierarchicalDataTemplate>
 
         </TreeView.ItemTemplate>
-        <!--<i:Interaction.Behaviors>
+        --><!--<i:Interaction.Behaviors>
             <utilities:BindableSelectedItemBehavior SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
         </i:Interaction.Behaviors>-->
         
@@ -85,7 +99,7 @@
                 <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
                 --><!--<Setter Property="dd1:DragDropManager.DropTargetAdvisor" Value="{StaticResource FolderPlaneItemsDropAdvisor}"/>--><!--
             </Style>
-        </TreeView.ItemContainerStyle>-->
-    </TreeView>
+        </TreeView.ItemContainerStyle>--><!--
+    </TreeView>-->
 
 </UserControl>
