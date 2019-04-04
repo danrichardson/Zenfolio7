@@ -43,20 +43,27 @@
         </HierarchicalDataTemplate>
     </UserControl.Resources>
 
-    <TreeView
-    BorderThickness="0"
-           
-    ItemsSource="{Binding Path=RootChildren}"
-    ItemTemplate="{StaticResource NavTreeTempl}" >
-
-        <TreeView.ItemContainerStyle>
-            <Style TargetType="{x:Type TreeViewItem}">
-                <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
-                <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
-                <!--<Setter Property="dd1:DragDropManager.DropTargetAdvisor" Value="{StaticResource FolderPlaneItemsDropAdvisor}"/>-->
-            </Style>
-        </TreeView.ItemContainerStyle>
-    </TreeView>
+    <DockPanel>
+        <StackPanel Name="Credentials" Orientation="Horizontal" DockPanel.Dock="Top" Visibility="{Binding CredentialsValid, Converter={utilities:InverseBooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Selected Path"/>
+                <TextBox MinWidth="500" Text="{Binding SelectedPath}"/>
+            </StackPanel>
+        </StackPanel>
+        <TreeView
+            BorderThickness="0"
+            ItemsSource="{Binding Path=RootChildren}"
+            ItemTemplate="{StaticResource NavTreeTempl}" >
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
+                    <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+                    <!--<Setter Property="dd1:DragDropManager.DropTargetAdvisor" Value="{StaticResource FolderPlaneItemsDropAdvisor}"/>-->
+                </Style>
+            </TreeView.ItemContainerStyle>
+        </TreeView>
+    </DockPanel>
+    
     
     <!--<TreeView
         BorderThickness="0" 

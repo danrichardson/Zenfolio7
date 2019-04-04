@@ -7,6 +7,7 @@ using System.ComponentModel;
 using Zenfolio7.View.ViewModel;
 using Zenfolio7.Messages;
 using MVVMLight.Messaging;
+using System.IO;
 
 namespace Zenfolio7.DirectoryPicker.ViewModel
 {
@@ -23,6 +24,9 @@ namespace Zenfolio7.DirectoryPicker.ViewModel
         {
             var dataUpdateMessage = new DataUpdateMessage("Test", DataUpdateMessage.DataPacketType.Group, SelectedPath);
             Messenger.Default.Send(dataUpdateMessage);
+            Properties.Settings.Default.Zenfolio7_SelectedPath = SelectedPath;
+            //Since this stores all preferences, it should be put into its own manager class
+            Properties.Settings.Default.Save();
         }
         public INavTreeItem SelectedItem { get; set; }
         // RootNr determines nr of RootItem that is used as RootNode 
@@ -57,6 +61,15 @@ namespace Zenfolio7.DirectoryPicker.ViewModel
         // Constructors
         public DirectoryPickerViewModel(int pRootNumber = 0, bool pIncludeFileChildren = false)
         {
+            try
+            {
+                CheckSelectedPath(Properties.Settings.Default.Zenfolio7_SelectedPath);
+            }
+            catch (Exception ex)
+            {
+                //do something
+            }
+
             SelectedPathFromTreeCommand = new RelayCommand(SelectedPathFromTree);
             RootChildren = new ObservableCollection<INavTreeItem> { };
 
@@ -72,11 +85,26 @@ namespace Zenfolio7.DirectoryPicker.ViewModel
             foreach (INavTreeItem item in treeRootItem.Children) { RootChildren.Add(item); }
         }
 
+        private void CheckSelectedPath(string path)
+        {
+            if (!string.IsNullOrEmpty(path) && Directory.Exists(path))
+            {
+                SelectedPath = path;
+            }
+        }
+
         private void SelectedPathFromTree(object obj)
         {
-            if (obj as String != null)
+            try
             {
-                SelectedPath = obj as String;
+                if (obj as String != null)
+                {
+                    CheckSelectedPath(obj as String);
+                }
+            }
+            catch (Exception ex)
+            {
+                //do something
             }
         }
 

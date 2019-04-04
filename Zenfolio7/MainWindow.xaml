@@ -12,16 +12,16 @@
   >
     <DockPanel>
         <TabControl Margin="8" SelectionChanged="TabControl_SelectionChanged">
+            <TabItem Header="Sync!">
+                <zensync:ZenSyncControl />
+            </TabItem>
+            
             <TabItem Header="Zenfolio Browser">
               <basic:ZenfolioBrowserControl />
             </TabItem>
       
             <TabItem Header="Directory Picker">
                 <dirpick:DirectoryPickerControl />
-            </TabItem>
-
-            <TabItem Header="Sync!">
-                <zensync:ZenSyncControl />
             </TabItem>
         </TabControl>
     </DockPanel>

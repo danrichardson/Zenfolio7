@@ -28,17 +28,21 @@ namespace Zenfolio7.ZenSync
         public ZenSyncViewModel() 
         {
             Messenger.Default.Register<DataUpdateMessage>(this, UpdateData);
-            SyncCommand = new RelayCommand(Sync, CanSync);
-            CancelCommand = new RelayCommand(Cancel, CanCancel);
+            SyncCommand = new RelayCommand(Sync);
+            CancelCommand = new RelayCommand(Cancel);
 
             SyncButtonText = "Sync!";
             CancelButtonText = "Cancel";
         }
 
-        private bool CanSync(object obj)
+        public bool CanSync
         {
-            return Directory.Exists(SelectedDirectory) && SelectedGroupElement != null && !IsSyncing;
+            get
+            {
+                return Directory.Exists(SelectedDirectory) && SelectedGroupElement != null && !IsSyncing;
+            }
         }
+        public bool CanCancel { get { return IsSyncing; } }
 
         private async void Sync(object obj)
         {
@@ -67,11 +71,6 @@ namespace Zenfolio7.ZenSync
 
             //}
 
-        }
-
-        private bool CanCancel(object obj)
-        {
-            return IsSyncing;
         }
 
         private void Cancel(object obj)

@@ -56,5 +56,17 @@ namespace Zenfolio7.Properties {
                 this["Zenfolio7_PasswordHash"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Zenfolio7_SelectedPath {
+            get {
+                return ((string)(this["Zenfolio7_SelectedPath"]));
+            }
+            set {
+                this["Zenfolio7_SelectedPath"] = value;
+            }
+        }
     }
 }

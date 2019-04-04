@@ -31,8 +31,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Button Content="{Binding SyncButtonText}" Command="{Binding SyncCommand}"/>
-                <Button Content="{Binding CancelButtonText}" Command="{Binding CancelCommand}"/>
+                <Button Content="{Binding SyncButtonText}" Command="{Binding SyncCommand}" IsEnabled="{Binding CanSync}"/>
+                <Button Content="{Binding CancelButtonText}" Command="{Binding CancelCommand}" IsEnabled="{Binding CanCancel}"/>
             </StackPanel>
             <ScrollViewer Grid.Row="1" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <TextBlock Text="{Binding SyncProcessUpdate}"/>
